@@ -70,16 +70,7 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
     sed -i -e 's/\.exe//g' "$PYDIR"/_sysconfigdata*
 )
 
-info "Building squashfskit"
-BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
-git config --global --add safe.directory "$BUILDDIR_ABS/squashfskit" # Workaround for building on macOS docker
-git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfskit"
-(
-    cd "$BUILDDIR/squashfskit"
-    git checkout -b pinned "$SQUASHFSKIT_COMMIT^{commit}" || fail "Could not find squashfskit commit $SQUASHFSKIT_COMMIT"
-    make -C squashfs-tools mksquashfs || fail "Could not build squashfskit"
-)
-MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
+
 
 appdir_python() {
   env \
@@ -237,7 +228,7 @@ info "Creating the AppImage"
     cat > ./squashfs-root/usr/lib/appimagekit/mksquashfs << EOF
 #!/bin/sh
 args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0//')
-"$MKSQUASHFS" \$args
+"mksquashfs" \$args
 EOF
     env VERSION="$VERSION" ARCH=x86_64 SOURCE_DATE_EPOCH=1530212462 \
                 ./squashfs-root/AppRun --no-appstream --verbose "$APPDIR" "$APPIMAGE" \
