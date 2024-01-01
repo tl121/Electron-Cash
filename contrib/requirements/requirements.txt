@@ -1,3 +1,4 @@
+typing_extensions>=3.10.0.2
 pyaes>=0.1a1
 ecdsa>=0.9
 requests
