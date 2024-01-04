@@ -225,6 +225,11 @@ find -exec touch -h -d '2000-11-11T11:11:11+00:00' {} +
 
 
 info "Creating the AppImage"
+
+# We switch gcc compilers to gcc-9 as needed by squashfskit
+sudo rm -f /usr/bin/gcc
+sudo ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
+
 (
     cd "$BUILDDIR"
     cp "$CACHEDIR/appimagetool" "$CACHEDIR/appimagetool_copy"
