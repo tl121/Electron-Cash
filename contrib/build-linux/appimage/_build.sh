@@ -77,8 +77,8 @@ info "Building squashfskit"
 
 # We switch gcc compilers to gcc-9 as needed by squashfskit
 gcc --version
-sudo rm -f /usr/bin/gcc
-sudo ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
+rm -f /usr/bin/gcc
+ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
 gcc --version
 
 BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
