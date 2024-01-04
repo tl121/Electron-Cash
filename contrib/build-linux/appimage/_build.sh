@@ -71,6 +71,11 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
 )
 
 info "Building squashfskit"
+
+# We switch gcc compilers to gcc-9 as needed by squashfskit
+sudo rm -f /usr/bin/gcc
+sudo ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
+
 BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
 git config --global --add safe.directory "$BUILDDIR_ABS/squashfskit" # Workaround for building on macOS docker
 git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfskit"
@@ -225,11 +230,6 @@ find -exec touch -h -d '2000-11-11T11:11:11+00:00' {} +
 
 
 info "Creating the AppImage"
-
-# We switch gcc compilers to gcc-9 as needed by squashfskit
-sudo rm -f /usr/bin/gcc
-sudo ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
-
 (
     cd "$BUILDDIR"
     cp "$CACHEDIR/appimagetool" "$CACHEDIR/appimagetool_copy"
