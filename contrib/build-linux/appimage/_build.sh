@@ -91,6 +91,14 @@ git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfski
 )
 MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
 
+# We switch gcc compilers to gcc-11 as needed by other packages
+gcc --version
+rm -f /usr/bin/gcc
+ln -s /usr/bin/x86_64-linux-gnu-gcc-11  /usr/bin/gcc
+gcc --version
+
+
+
 appdir_python() {
   env \
     PYTHONNOUSERSITE=1 \
