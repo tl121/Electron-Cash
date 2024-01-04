@@ -1,5 +1,8 @@
 #!/bin/bash
 
+info "Checking gcc version _build A"
+gcc --version
+
 set -e
 
 PROJECT_ROOT="$(dirname "$(readlink -e "$0")")/../../.."

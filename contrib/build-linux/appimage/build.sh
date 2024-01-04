@@ -1,4 +1,6 @@
 #!/bin/bash
+info "Checking gcc version  build 1"
+gcc --version
 
 here=$(dirname "$0")
 test -n "$here" -a -d "$here" || (echo "Cannot determine build dir. FIXME!" && exit 1)
@@ -70,12 +72,18 @@ FRESH_CLONE_DIR=$FRESH_CLONE/$GIT_DIR_NAME
         git checkout $REV
 ) || fail "Could not create a fresh clone from git"
 
+info "Checking GCC Version build 2"
+gcc --version
+
 mkdir "$FRESH_CLONE_DIR/contrib/build-linux/home" || fail "Failed to create home directory"
 
 # We switch gcc compilers to gcc-9 as needed by squashfskit
 gcc --version
 $SUDO rm -f /usr/bin/gcc
 $SUDO ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
+
+
+info "Checking GCC Version build 3"
 gcc --version
 
 (
