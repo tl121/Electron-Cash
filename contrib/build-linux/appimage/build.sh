@@ -72,6 +72,12 @@ FRESH_CLONE_DIR=$FRESH_CLONE/$GIT_DIR_NAME
 
 mkdir "$FRESH_CLONE_DIR/contrib/build-linux/home" || fail "Failed to create home directory"
 
+# We switch gcc compilers to gcc-9 as needed by squashfskit
+gcc --version
+$SUDO rm -f /usr/bin/gcc
+$SUDO ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
+gcc --version
+
 (
     # NOTE: We propagate forward the GIT_REPO override to the container's env,
     # just in case it needs to see it.
