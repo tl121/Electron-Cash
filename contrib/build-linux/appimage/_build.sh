@@ -3,6 +3,8 @@
 info "Checking gcc version _build A"
 gcc --version
 echo "$PATH"  #find out what is going on inside the container
+pwd
+echo "$USER"
 
 set -e
 
