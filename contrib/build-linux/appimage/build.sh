@@ -97,7 +97,7 @@ gcc --version
     -v $FRESH_CLONE_DIR:/opt/electroncash:delegated \
     --rm \
     --workdir /opt/electroncash/contrib/build-linux/appimage \
-    -u root \
+    -u $(id -u $USER):$(id -g $USER) \
     electroncash-appimage-builder-img-$DOCKER_SUFFIX \
     ./_build.sh $REV
 ) || fail "Build inside docker container failed"

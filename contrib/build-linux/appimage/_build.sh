@@ -77,9 +77,9 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
 info "Building squashfskit"
 
 # We switch gcc compilers to gcc-9 as needed by squashfskit
-gcc --version
-rm -f /usr/bin/gcc
-ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
+#gcc --version
+#rm -f /usr/bin/gcc
+#ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
 gcc --version
 
 BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
@@ -94,8 +94,8 @@ MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
 
 # We switch gcc compilers to gcc-11 as needed by other packages
 gcc --version
-rm -f /usr/bin/gcc
-ln -s /usr/bin/x86_64-linux-gnu-gcc-11  /usr/bin/gcc
+#rm -f /usr/bin/gcc
+#ln -s /usr/bin/x86_64-linux-gnu-gcc-11  /usr/bin/gcc
 gcc --version
 
 
