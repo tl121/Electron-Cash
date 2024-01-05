@@ -6,9 +6,8 @@ echo "$PATH"  #find out what is going on inside the container
 pwd
 echo "$USER"
 mkdir "$PWD/.switchgcc"
-export PATH=" $PWD/.switchgcc:$PATH"
+export PATH="$PWD/.switchgcc:$PATH"
 printenv PATH
-ls -l /usr/bin/gcc*
 ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
 gcc --version
 gcc
