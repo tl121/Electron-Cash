@@ -1,17 +1,11 @@
 #!/bin/bash
 
-info "Checking gcc version _build A"
-gcc --version
-echo "$PATH"  #find out what is going on inside the container
-pwd
-echo "$USER"
+#we will be changing gcc version so we will need a directory on the past for a soft link
 mkdir "$PWD/.switchgcc"
 export PATH="$PWD/.switchgcc:$PATH"
-printenv PATH
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
-gcc --version
-gcc
-#end of checking code last line will fail
+#these will be our choices
+#ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+#ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
 
 set -e
 
@@ -86,10 +80,7 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
 info "Building squashfskit"
 
 # We switch gcc compilers to gcc-9 as needed by squashfskit
-#gcc --version
-#rm -f /usr/bin/gcc
-#ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc
-gcc --version
+ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
 
 BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
 git config --global --add safe.directory "$BUILDDIR_ABS/squashfskit" # Workaround for building on macOS docker
@@ -101,13 +92,8 @@ git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfski
 )
 MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
 
-# We switch gcc compilers to gcc-11 as needed by other packages
-gcc --version
-#rm -f /usr/bin/gcc
-#ln -s /usr/bin/x86_64-linux-gnu-gcc-11  /usr/bin/gcc
-gcc --version
-
-
+# We switch gcc compilers back to gcc-11 as needed by other packages
+ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
 
 appdir_python() {
   env \
