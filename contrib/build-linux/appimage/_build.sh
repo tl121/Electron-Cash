@@ -6,13 +6,15 @@ export PATH="$PWD/.switchgcc:$PATH"
 #these will be our choices
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
-printenv PATH
+echo "$PATH"
 gcc --version
 ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+echo "$PWD"
+ls -l "$PWD/.switchgcc/gcc"
 gcc --version
 ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
 gcc --version
-
+gcc
 
 set -e
 
