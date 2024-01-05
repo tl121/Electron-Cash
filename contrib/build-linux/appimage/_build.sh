@@ -14,7 +14,7 @@ echo "$PWD"
 ls -l "$PWD/.switchgcc/gcc"
 gcc --version
 which gcc
-ln -l "$PWD/.switchgcc/gcc"
+ls -l "$PWD/.switchgcc/gcc"
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
 #gcc --version
 gcc
