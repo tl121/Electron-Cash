@@ -78,9 +78,10 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
 )
 
 info "Building squashfskit"
-
+gcc --version
 # We switch gcc compilers to gcc-9 as needed by squashfskit
 ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+gcc --version
 
 BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
 git config --global --add safe.directory "$BUILDDIR_ABS/squashfskit" # Workaround for building on macOS docker
