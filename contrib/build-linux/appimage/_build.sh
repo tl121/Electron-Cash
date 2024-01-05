@@ -5,6 +5,7 @@ gcc --version
 echo "$PATH"  #find out what is going on inside the container
 pwd
 echo "$USER"
+fail "just testing"
 
 set -e
 
