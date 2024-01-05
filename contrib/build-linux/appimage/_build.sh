@@ -5,10 +5,13 @@ gcc --version
 echo "$PATH"  #find out what is going on inside the container
 pwd
 echo "$USER"
-mkdir foo
-cd foo
-pwd
+mkdir "$PWD/.switchgcc"
+export PATH=" $PWD/.switchgcc:$PATH"
+printenv PATH
+ls -l /usr/bin/gcc*
+
 gcc
+#end of checking code last line will fail
 
 set -e
 
