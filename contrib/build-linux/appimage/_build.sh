@@ -9,7 +9,8 @@ mkdir "$PWD/.switchgcc"
 export PATH=" $PWD/.switchgcc:$PATH"
 printenv PATH
 ls -l /usr/bin/gcc*
-
+ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+gcc --version
 gcc
 #end of checking code last line will fail
 
