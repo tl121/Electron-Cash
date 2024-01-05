@@ -1,14 +1,14 @@
 #!/bin/bash
 
 #we will be changing gcc version so we will need a directory on the past for a soft link
-gcc
+#gcc
 mkdir "$PWD/.switchgcc"
 export PATH="$PWD/.switchgcc:$PATH"
 #these will be our choices
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
-echo "$PATH"
-gcc --version
+#echo "$PATH"
+#gcc --version
 ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
 echo "$PWD"
 ls -l "$PWD/.switchgcc/gcc"
