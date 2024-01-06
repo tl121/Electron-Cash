@@ -53,8 +53,8 @@ RUN echo deb ${UBUNTU_MIRROR} jammy main restricted universe multiverse > /etc/a
         rustc \
         cargo \ 
         && \
-    #rm -f /usr/bin/gcc && \
-    #ln -s /usr/bin/x86_64-linux-gnu-gcc-9 /usr/bin/gcc && \   
+    rm -f /usr/bin/gcc && \
+    ln -s /usr/bin/x86_64-linux-gnu-gcc-9 /usr/bin/gcc && \   
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y && \
     apt-get clean
