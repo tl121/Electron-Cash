@@ -7,8 +7,8 @@ export PATH="$PWD/.switchgcc:$PATH"
 #these will be our choices
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/cc"
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/cc"
+ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/cc"
 #echo "$PATH"
 #gcc --version
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
@@ -94,8 +94,8 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
 info "Building squashfskit"
 gcc --version
 # We switch gcc compilers to gcc-9 as needed by squashfskit
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/cc"
+#ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+#ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/cc"
 
 
 BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
@@ -109,8 +109,8 @@ git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfski
 MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
 
 # We switch gcc compilers back to gcc-11 as needed by other packages
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/cc"
+ln -sf /usr/bin/x86_64-l#inux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
+ln -sf /usr/bin/x86_64-l#inux-gnu-gcc-11 "$PWD/.switchgcc/cc"
 
 appdir_python() {
   env \
