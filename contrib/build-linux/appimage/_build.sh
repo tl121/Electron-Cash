@@ -1,15 +1,5 @@
 #!/bin/bash
 
-#we will be changing gcc version so we will need a directory on the past for a soft link
-gcc
-#mkdir "$PWD/.switchgcc"
-#export PATH="$PWD/.switchgcc:$PATH"
-#ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
-#ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc"
-cc --version
-gcc --version
-gcc
-
 set -e
 
 PROJECT_ROOT="$(dirname "$(readlink -e "$0")")/../../.."
@@ -90,7 +80,6 @@ git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfski
     make -C squashfs-tools mksquashfs || fail "Could not build squashfskit"
 )
 MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
-
 
 appdir_python() {
   env \
