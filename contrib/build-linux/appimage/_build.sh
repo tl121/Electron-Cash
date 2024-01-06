@@ -1,20 +1,19 @@
 #!/bin/bash
 
 #we will be changing gcc version so we will need a directory on the past for a soft link
-#gcc
-mkdir "$PWD/.switchgcc"
-export PATH="$PWD/.switchgcc:$PATH"
+gcc
+##export PATH="$PWD/.switchgcc:$PATH"
 #these will be our choices
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
 #echo "$PATH"
 #gcc --version
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
-echo "$PWD"
-ls -l "$PWD/.switchgcc/gcc"
+#ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+#echo "$PWD"
+#ls -l "$PWD/.switchgcc/gcc"
 gcc --version
-which gcc
-ls -l "$PWD/.switchgcc/gcc"
+#which gcc
+#ls -l "$PWD/.switchgcc/gcc"
 #ln -sf /usr/bin/x86_64-linux-gnu-gcc-11 "$PWD/.switchgcc/gcc"
 #gcc --version
 gcc
@@ -92,8 +91,8 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
 info "Building squashfskit"
 gcc --version
 # We switch gcc compilers to gcc-9 as needed by squashfskit
-ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
-gcc --version
+#ln -sf /usr/bin/x86_64-linux-gnu-gcc-9 "$PWD/.switchgcc/gcc"
+#gcc --version
 
 BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
 git config --global --add safe.directory "$BUILDDIR_ABS/squashfskit" # Workaround for building on macOS docker
