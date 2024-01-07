@@ -1,5 +1,4 @@
 import time
-import typing_extensions
 from struct import pack
 
 from electroncash.i18n import _

@@ -29,10 +29,7 @@ RUN apt-get update -q && \
         python3-venv \
         pkg-config \
         libjpeg-dev \
-        gcc-9=9.5.0-1ubuntu1~22.04 \
         && \
-    rm -f /usr/bin/gcc
-    ln -s /usr/bin/x86_64-linux-gnu-gcc-9  /usr/bin/gcc  
     rm -rf /var/lib/apt/lists/* && \
     apt-get autoremove -y && \
     apt-get clean
