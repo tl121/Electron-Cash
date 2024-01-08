@@ -80,6 +80,7 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
 #    make -C squashfs-tools mksquashfs || fail "Could not build squashfskit"
 #)
 #MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
+MKSQUASHFS="mksquashfs"
 
 appdir_python() {
   env \
