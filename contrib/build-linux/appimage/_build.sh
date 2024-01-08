@@ -226,6 +226,7 @@ find -exec touch -h -d '2000-11-11T11:11:11+00:00' {} +
 
 
 info "Creating the AppImage"
+unset SOURCE_DATE_EPOCH
 (
     cd "$BUILDDIR"
     cp "$CACHEDIR/appimagetool" "$CACHEDIR/appimagetool_copy"
