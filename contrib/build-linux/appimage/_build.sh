@@ -237,14 +237,14 @@ info "Creating the AppImage"
     # that mksquashfs from squashfskit does not support. It is not needed for squashfskit.
     cat > ./squashfs-root/usr/lib/appimagekit/mksquashfs << EOF
 #!/bin/sh
-#args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0//')
 args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0/-mkfs-time 0/')
 "$MKSQUASHFS" \$args
-EOF  
+EOF
     env VERSION="$VERSION" ARCH=x86_64 \
                 ./squashfs-root/AppRun --no-appstream --verbose "$APPDIR" "$APPIMAGE" \
                 || fail "AppRun failed"
 ) || fail "Could not create the AppImage"
+
 
 
 info "Done"
