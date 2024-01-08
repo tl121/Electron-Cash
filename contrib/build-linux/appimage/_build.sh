@@ -241,7 +241,9 @@ info "Creating the AppImage"
 args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0/-mkfs-time 0/')
 "$MKSQUASHFS" \$args
 EOF
-    env VERSION="$VERSION" ARCH=x86_64 SOURCE_DATE_EPOCH=1530212462 \
+    
+#env VERSION="$VERSION" ARCH=x86_64 SOURCE_DATE_EPOCH=1530212462 \  
+    env VERSION="$VERSION" ARCH=x86_64 \
                 ./squashfs-root/AppRun --no-appstream --verbose "$APPDIR" "$APPIMAGE" \
                 || fail "AppRun failed"
 ) || fail "Could not create the AppImage"
