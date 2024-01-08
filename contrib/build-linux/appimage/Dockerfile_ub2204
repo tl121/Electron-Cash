@@ -49,6 +49,7 @@ RUN echo deb ${UBUNTU_MIRROR} jammy main restricted universe multiverse > /etc/a
         libfreetype6 \
         libfontconfig1 \
         libssl-dev \
+        squashfs-tools \
         gcc-9=9.5.0-1ubuntu1~22.04 \
         g++ \
         rustc \
