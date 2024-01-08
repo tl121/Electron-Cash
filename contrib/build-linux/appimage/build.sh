@@ -46,7 +46,7 @@ if [ -z ${SUDO+x} ] ; then
     fi
 fi
 
-DOCKER_SUFFIX=ub1804
+DOCKER_SUFFIX=ub2204
 
 info "Creating docker image ..."
 $SUDO docker build -t electroncash-appimage-builder-img-$DOCKER_SUFFIX \
