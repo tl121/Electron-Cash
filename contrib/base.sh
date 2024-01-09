@@ -191,7 +191,7 @@ which git > /dev/null || fail "Git is required to proceed"
 # Now, some variables that affect all build scripts
 
 export PYTHONHASHSEED=22
-export SOURCE_DATE_EPOCH=1530212462
+export SOURCE_DATE_EPOCH=1704067200
 # Note, when upgrading Python, check the Windows python.exe embedded manifest for changes.
 # If the manifest changed, contrib/build-wine/manifest.xml needs to be updated.
 export PYTHON_VERSION=3.8.9  # Windows, OSX & Linux AppImage use this to determine what to download/build

@@ -70,17 +70,16 @@ tar xf "$CACHEDIR/Python-$PYTHON_VERSION.tar.xz" -C "$BUILDDIR"
     sed -i -e 's/\.exe//g' "$PYDIR"/_sysconfigdata*
 )
 
-#info "Building squashfskit"
-#BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
-#git config --global --add safe.directory "$BUILDDIR_ABS/squashfskit" # Workaround for building on macOS docker
-#git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfskit"
-#(
-#    cd "$BUILDDIR/squashfskit"
-#    git checkout -b pinned "$SQUASHFSKIT_COMMIT^{commit}" || fail "Could not find squashfskit commit #$SQUASHFSKIT_COMMIT"
-#    make -C squashfs-tools mksquashfs || fail "Could not build squashfskit"
-#)
-#MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
-MKSQUASHFS="mksquashfs"
+info "Building squashfskit"
+BUILDDIR_ABS=`readlink -f "$BUILDDIR"`
+git config --global --add safe.directory "$BUILDDIR_ABS/squashfskit" # Workaround for building on macOS docker
+git clone "https://github.com/squashfskit/squashfskit.git" "$BUILDDIR/squashfskit"
+(
+    cd "$BUILDDIR/squashfskit"
+    git checkout -b pinned "$SQUASHFSKIT_COMMIT^{commit}" || fail "Could not find squashfskit commit $SQUASHFSKIT_COMMIT"
+    make -C squashfs-tools mksquashfs || fail "Could not build squashfskit"
+)
+MKSQUASHFS="$BUILDDIR/squashfskit/squashfs-tools/mksquashfs"
 
 appdir_python() {
   env \
@@ -226,7 +225,6 @@ find -exec touch -h -d '2000-11-11T11:11:11+00:00' {} +
 
 
 info "Creating the AppImage"
-unset SOURCE_DATE_EPOCH
 (
     cd "$BUILDDIR"
     cp "$CACHEDIR/appimagetool" "$CACHEDIR/appimagetool_copy"
@@ -238,14 +236,13 @@ unset SOURCE_DATE_EPOCH
     # that mksquashfs from squashfskit does not support. It is not needed for squashfskit.
     cat > ./squashfs-root/usr/lib/appimagekit/mksquashfs << EOF
 #!/bin/sh
-args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0/-mkfs-time 0 -all-time 0/')
+args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0//')
 "$MKSQUASHFS" \$args
 EOF
-    env VERSION="$VERSION" ARCH=x86_64 \
+    env VERSION="$VERSION" ARCH=x86_64 SOURCE_DATE_EPOCH=1704067200 \
                 ./squashfs-root/AppRun --no-appstream --verbose "$APPDIR" "$APPIMAGE" \
                 || fail "AppRun failed"
 ) || fail "Could not create the AppImage"
-
 
 
 info "Done"
