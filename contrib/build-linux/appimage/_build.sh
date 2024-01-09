@@ -238,7 +238,7 @@ unset SOURCE_DATE_EPOCH
     # that mksquashfs from squashfskit does not support. It is not needed for squashfskit.
     cat > ./squashfs-root/usr/lib/appimagekit/mksquashfs << EOF
 #!/bin/sh
-args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0/-all-time 0/')
+args=\$(echo "\$@" | sed -e 's/-mkfs-fixed-time 0/-mkfs-time 0 -all-time 0/')
 "$MKSQUASHFS" \$args
 EOF
     env VERSION="$VERSION" ARCH=x86_64 \
